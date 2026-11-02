@@ -122,9 +122,21 @@
 
     .final { text-align: center; background: var(--hero); color: #fff; border-radius: 28px; padding: 56px 24px; }
     .final p { opacity: .9; }
-    footer { padding: 40px 0; color: var(--muted); font-size: .9rem; }
-    footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
-    footer .links { display: flex; gap: 20px; margin-left: auto; }
+    .prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 36px; }
+    .prices ul { margin: 0 0 18px; padding-left: 1.2em; color: var(--muted); }
+    .price { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+    .price b { font: 800 1.35rem var(--display); white-space: nowrap; }
+    .price small { display: block; color: var(--muted); }
+    .note { color: var(--muted); font-size: .92rem; margin-top: 20px; }
+    @media (max-width: 720px) { .prices { grid-template-columns: 1fr; } }
+    footer { padding: 40px 0; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
+    footer .wrap { display: grid; gap: 20px; }
+    footer .links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    footer .company { margin: 0; line-height: 1.7; }
+    .badges { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .badges img { display: block; height: 50px; width: auto; }
+    .badges .netopia { background: #0a2d5c; border-radius: 8px; padding: 6px 12px; }
+    .badges .netopia img { height: 38px; }
   </style>
 </head>
 <body>
@@ -134,6 +146,7 @@
       <nav>
         <a href="#functii">Funcții</a>
         <a href="#cum">Cum funcționează</a>
+        <a href="#preturi">Prețuri</a>
         <a href="#intrebari">Întrebări</a>
       </nav>
       <a class="btn btn-blue" href="https://app.brainmed.ro/login">Intră în cont</a>
@@ -259,11 +272,43 @@
       </div>
     </section>
 
+    <section id="preturi" class="alt">
+      <div class="wrap">
+        <h2>Prețuri</h2>
+        <p class="lead">Primele 3 zile sunt gratuite. Apoi alegi un pachet BrainMed Premium, plătit o singură dată cu cardul, fără reînnoire automată.</p>
+        <div class="prices">
+          <div class="card">
+            <h3>Premium Standard</h3>
+            <ul>
+              <li>Grile, teste și simulări nelimitate, cu explicații și trucuri de memorat</li>
+              <li>Cărțile din bibliografie (Kumar &amp; Clark, Sinopsis, Lawrence), schițate și explicate</li>
+              <li>Flashcarduri, plan zilnic, statistici și învățare offline</li>
+              <li>Asistentul Brainy, cu răspunsuri din cărți: 10 întrebări pe zi</li>
+            </ul>
+            <div class="price"><span>30 de zile</span><b>70 lei</b></div>
+            <div class="price"><span>Până la examenul din 2027<small>(acces până la 30.11.2027; ofertă de lansare: 275 lei pentru primele 100 de pachete plătite pe site)</small></span><b>550 lei</b></div>
+          </div>
+          <div class="card">
+            <h3>Premium Pro · audio și AI</h3>
+            <ul>
+              <li>Tot ce include Standard</li>
+              <li>Brainy fără limită zilnică, inclusiv „De ce am greșit?” la fiecare grilă</li>
+              <li>Vocea naturală care citește fișele și răspunsurile; conversație vocală cu Brainy</li>
+              <li>Recapitulare audio pentru fiecare capitol</li>
+            </ul>
+            <div class="price"><span>30 de zile</span><b>99 lei</b></div>
+            <div class="price"><span>Până la examenul din 2027<small>(acces până la 30.11.2027; ofertă de lansare: 395 lei pentru primele 100 de pachete plătite pe site)</small></span><b>790 lei</b></div>
+          </div>
+        </div>
+        <p class="note">Ce cumperi este acces la conținut digital, activat pe contul tău imediat după confirmarea plății (vezi <a href="https://app.brainmed.ro/legal#livrare">Livrare</a> și <a href="https://app.brainmed.ro/legal#retur">Retur și anulare</a>). Plata se face prin NETOPIA Payments.</p>
+      </div>
+    </section>
+
     <section id="intrebari">
       <div class="wrap faq">
         <h2>Întrebări frecvente</h2>
         <details><summary>Pentru cine este BrainMed?</summary><p>Pentru studenții și absolvenții de medicină care se pregătesc pentru examenul de rezidențiat.</p></details>
-        <details><summary>Costă ceva?</summary><p>Primele 3 zile sunt gratuite: poți analiza primele pagini din schițe și trucurile de memorat pentru fiecare grilă. Apoi alegi un pachet Premium.</p></details>
+        <details><summary>Costă ceva?</summary><p>Primele 3 zile sunt gratuite: poți analiza primele pagini din schițe și trucurile de memorat pentru fiecare grilă. Apoi alegi un pachet Premium; vezi <a href="#preturi">prețurile</a>.</p></details>
         <details><summary>Din ce cărți sunt grilele?</summary><p>Din bibliografia de rezidențiat: Kumar &amp; Clark – Medicină clinică, Sinopsis de medicină și Lawrence – Chirurgie generală și specialități chirurgicale. Fiecare grilă indică pagina de referință.</p></details>
         <details><summary>Pot învăța fără internet?</summary><p>Da. Descarci capitolele pe dispozitiv, iar răspunsurile date offline se sincronizează când revii online.</p></details>
         <details><summary>Ce se întâmplă cu datele mele?</summary><p>Le folosim doar ca să-ți arătăm progresul și să-ți potrivim planul. Detalii în <a href="https://app.brainmed.ro/confidentialitate">politica de confidențialitate</a>.</p></details>
@@ -283,11 +328,24 @@
 
   <footer>
     <div class="wrap">
-      <span>© 2026 BrainMed</span>
       <div class="links">
-        <a href="https://app.brainmed.ro/confidentialitate">Confidențialitate</a>
+        <a href="https://app.brainmed.ro/legal#termeni">Termeni și condiții</a>
+        <a href="https://app.brainmed.ro/legal#livrare">Livrare</a>
+        <a href="https://app.brainmed.ro/legal#retur">Retur și anulare</a>
+        <a href="https://app.brainmed.ro/confidentialitate">Politica de confidențialitate (GDPR)</a>
+        <a href="https://anpc.ro/" target="_blank" rel="noreferrer">ANPC</a>
         <a href="https://app.brainmed.ro/login">Aplicația</a>
       </div>
+      <p class="company">BrainMed este operat de <b>MB PRIVATE DATA S.R.L.</b>, care vinde pachetele Premium și emite factura ·
+        CUI 39277318 · Nr. Reg. Com. J2018000974162 · Sediu social: Jud. Dolj, Municipiul Craiova, Str. Bucovina nr. 17, bl. I33, sc. 1, ap. 9 ·
+        Punct de lucru: același cu sediul social ·
+        Contact: <a href="mailto:privacy@brainmed.ro">privacy@brainmed.ro</a></p>
+      <div class="badges">
+        <a href="https://netopia-payments.com/" target="_blank" rel="noreferrer" class="netopia"><img src="assets/netopia.svg" alt="NETOPIA Payments" /></a>
+        <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noreferrer"><img src="assets/anpc-sal.svg" alt="ANPC – Soluționarea alternativă a litigiilor" /></a>
+        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noreferrer"><img src="assets/anpc-sol.svg" alt="Soluționarea online a litigiilor" /></a>
+      </div>
+      <span>© 2026 BrainMed</span>
     </div>
   </footer>
 </body>
