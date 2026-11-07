@@ -115,7 +115,20 @@
 
     .final { text-align: center; background: var(--hero); color: #fff; border-radius: 28px; padding: 56px 24px; }
     .final p { opacity: .9; }
-    .prices { display: grid; gap: 20px; margin-top: 36px; max-width: 560px; }
+    .prices { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 420px); gap: 24px; margin-top: 36px; align-items: start; }
+    @media (max-width: 900px) { .prices { grid-template-columns: 1fr; } }
+    .deal { margin-top: 6px; padding: 18px; border-radius: 18px; background: linear-gradient(135deg, #e53935, #ff7043); color: #fff; display: grid; gap: 4px; }
+    .deal .off { font: 900 2.6rem/1 var(--display); letter-spacing: -1px; }
+    .deal .now { font: 900 2.2rem/1.1 var(--display); }
+    .deal s { opacity: .85; font-size: 1.15rem; font-weight: 700; }
+    .deal small { opacity: .95; }
+    .waitlist { border: 2px solid #ff7043; }
+    .waitlist h3 { font: 900 1.6rem var(--display); }
+    .waitlist .hot { display: inline-block; padding: 6px 14px; border-radius: 999px; background: #e53935; color: #fff; font-weight: 800; margin: 6px 0 10px; }
+    .waitlist form { display: grid; gap: 10px; margin-top: 14px; }
+    .waitlist input { padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); font: inherit; background: var(--bg, #fff); color: inherit; }
+    .waitlist button { padding: 14px 16px; border: 0; border-radius: 12px; background: #e53935; color: #fff; font: 800 1.05rem var(--display); cursor: pointer; }
+    .waitlist .msg { margin-top: 10px; font-weight: 700; }
     .prices ul { margin: 0 0 18px; padding-left: 1.2em; color: var(--muted); }
     .price { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
     .price b { font: 800 1.35rem var(--display); white-space: nowrap; }
@@ -216,6 +229,7 @@
           <div class="card feature"><div class="ico">✏️</div><h3>Schițe din carte și trucuri de memorat</h3><p>Toate grilele au schița din cartea din care au fost făcute, plus un TRUC RAPID DE MEMORAT. Vezi pe loc paragraful de unde vine răspunsul, nu doar răspunsul.</p></div>
           <div class="card"><div class="ico">📝</div><h3>Grile explicate</h3><p>Complement simplu și multiplu, cu pagina de referință și o explicație pentru fiecare variantă, nu doar pentru cea corectă.</p></div>
           <div class="card"><div class="ico">🃏</div><h3>Flashcarduri inteligente</h3><p>Cardurile pe care le știi revin rar, cele grele revin des. Repetiția spațiată face restul.</p></div>
+          <div class="card"><div class="ico">📅</div><h3>Agenda studentului</h3><p>Programul tău pe zile, bifat pe rând, și trecerile prin materie numărate pentru fiecare capitol, până la examen.</p></div>
           <div class="card"><div class="ico">☀️</div><h3>Planul zilei</h3><p>Răspunzi la câteva întrebări despre cum te simți și cât timp ai, iar BrainMed îți propune capitolele potrivite.</p></div>
           <div class="card"><div class="ico">⏱️</div><h3>Simulări de examen</h3><p>Examenele din 2021–2025, explicate, și teste cronometrate ca în ziua examenului, cu rezultate pe capitole.</p></div>
           <div class="card"><div class="ico">🤖</div><h3>Brainy, asistentul tău</h3><p>Întreabă orice despre o grilă sau un capitol și primești un răspuns cu trimitere la sursă.</p></div>
@@ -263,7 +277,18 @@
               <li>Asistentul Brainy, cu răspunsuri din cărți: 10 întrebări pe zi</li>
             </ul>
             <div class="price"><span>30 de zile</span><b>99 lei</b></div>
-            <div class="price"><span>Până la examenul din 2027 · cea mai populară alegere<small>(acces până la 30.11.2027; ofertă de lansare: 300 lei pentru primele 100 de pachete plătite pe site)</small></span><b>600 lei</b></div>
+            <div class="price"><span>Până la examenul din 2027 · cea mai populară alegere<small>acces până la 30.11.2027</small></span><b>600 lei</b></div>
+            <div class="deal"><span class="off">-50% reducere</span><span class="now">300 lei <s>600 lei</s></span><small>Ofertă de lansare pentru primele 100 de pachete plătite pe site</small></div>
+          </div>
+          <div class="card waitlist" id="waitlist">
+            <h3>Înscrie-te în waitlist!</h3>
+            <span class="hot">50% REDUCERE pentru primele 100 de conturi</span>
+            <p>🚀 Drumul începe pe <b>11.11.2026, ora 20:00</b>. Primii 100 înscriși primesc pe email codul de reducere.</p>
+            <form id="waitlist-form">
+              <input type="email" name="email" placeholder="adresa ta de email" required autocomplete="email">
+              <button type="submit">Vreau în primii 100</button>
+            </form>
+            <p class="msg" id="waitlist-msg" role="status"></p>
           </div>
         </div>
         <p class="note">Ce cumperi este acces la conținut digital, activat pe contul tău imediat după confirmarea plății (vezi <a href="https://app.brainmed.ro/legal#livrare">Livrare</a> și <a href="https://app.brainmed.ro/legal#retur">Retur și anulare</a>). Plata se face prin NETOPIA Payments.</p>
@@ -315,5 +340,23 @@
       <span>© 2026 BrainMed</span>
     </div>
   </footer>
+<script>
+document.getElementById('waitlist-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const msg = document.getElementById('waitlist-msg'), button = e.target.querySelector('button');
+  button.disabled = true;
+  try {
+    const r = await fetch('https://app.brainmed.ro/api/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: e.target.email.value }) });
+    if (!r.ok) throw new Error();
+    const { position, discount } = await r.json();
+    msg.textContent = discount ? `Gata! Ești pe locul ${position}: primești codul de 50% pe email la lansare.` : `Gata! Ești pe locul ${position} în waitlist. Te anunțăm pe email la lansare.`;
+    e.target.reset();
+  } catch {
+    msg.textContent = 'Nu am putut salva emailul. Verifică adresa și încearcă din nou.';
+  }
+  button.disabled = false;
+});
+</script>
 </body>
 </html>
