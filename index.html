@@ -103,13 +103,6 @@
     .step::before { counter-increment: step; content: counter(step); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: var(--primary-ink); font-weight: 800; margin-bottom: 12px; }
     .step p { color: var(--muted); margin: 0; }
 
-    .science { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    @media (max-width: 760px) { .science { grid-template-columns: 1fr; } }
-    .science ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
-    .science li { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
-    .science li b { display: block; }
-    .science li span { color: var(--muted); font-size: .95rem; }
-    .cite { font-size: .85rem; color: var(--muted); }
 
     .devices { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
     .device { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .6em 1.2em; font-weight: 600; }
@@ -122,13 +115,12 @@
 
     .final { text-align: center; background: var(--hero); color: #fff; border-radius: 28px; padding: 56px 24px; }
     .final p { opacity: .9; }
-    .prices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 36px; }
+    .prices { display: grid; gap: 20px; margin-top: 36px; max-width: 560px; }
     .prices ul { margin: 0 0 18px; padding-left: 1.2em; color: var(--muted); }
     .price { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
     .price b { font: 800 1.35rem var(--display); white-space: nowrap; }
     .price small { display: block; color: var(--muted); }
     .note { color: var(--muted); font-size: .92rem; margin-top: 20px; }
-    @media (max-width: 720px) { .prices { grid-template-columns: 1fr; } }
     footer { padding: 40px 0; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
     footer .wrap { display: grid; gap: 20px; }
     footer .links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
@@ -245,22 +237,6 @@
     </section>
 
     <section>
-      <div class="wrap science">
-        <div>
-          <h2>Construit pe metode care funcționează</h2>
-          <p class="lead">Nu inventăm noi cum se învață. Folosim tehnicile cu cele mai solide dovezi din psihologia învățării.</p>
-          <p class="cite">Dunlosky et al., <i>Psychological Science in the Public Interest</i>, 2013 · Karpicke &amp; Roediger, <i>Science</i>, 2008</p>
-        </div>
-        <ul>
-          <li><b>Schițe și trucuri de memorat</b><span>Schița din carte și un truc scurt fixează informația și îți salvează din timpul de învățat.</span></li>
-          <li><b>Testarea activă</b><span>Să-ți amintești un răspuns fixează informația mai bine decât să recitești.</span></li>
-          <li><b>Repetiția spațiată</b><span>Reluările la intervale tot mai mari mută informația în memoria de lungă durată.</span></li>
-          <li><b>Feedback imediat</b><span>Afli pe loc de ce o variantă e greșită, cât timp întrebarea e încă proaspătă.</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="alt">
       <div class="wrap">
         <h2>Pe orice dispozitiv</h2>
         <p class="lead">Contul și progresul tău sunt aceleași peste tot. Descarcă capitolele și învață și în tren, fără internet.</p>
@@ -283,21 +259,11 @@
               <li>Grile, teste și simulări nelimitate, cu explicații și trucuri de memorat</li>
               <li>Cărțile din bibliografie (Kumar &amp; Clark, Sinopsis, Lawrence), schițate și explicate</li>
               <li>Flashcarduri, plan zilnic, statistici și învățare offline</li>
+              <li>Recapitulare audio pentru fiecare capitol</li>
               <li>Asistentul Brainy, cu răspunsuri din cărți: 10 întrebări pe zi</li>
             </ul>
-            <div class="price"><span>30 de zile</span><b>70 lei</b></div>
-            <div class="price"><span>Până la examenul din 2027<small>(acces până la 30.11.2027; ofertă de lansare: 275 lei pentru primele 100 de pachete plătite pe site)</small></span><b>550 lei</b></div>
-          </div>
-          <div class="card">
-            <h3>Premium Pro · audio și AI</h3>
-            <ul>
-              <li>Tot ce include Standard</li>
-              <li>Brainy fără limită zilnică, inclusiv „De ce am greșit?” la fiecare grilă</li>
-              <li>Vocea naturală care citește fișele și răspunsurile; conversație vocală cu Brainy</li>
-              <li>Recapitulare audio pentru fiecare capitol</li>
-            </ul>
             <div class="price"><span>30 de zile</span><b>99 lei</b></div>
-            <div class="price"><span>Până la examenul din 2027<small>(acces până la 30.11.2027; ofertă de lansare: 395 lei pentru primele 100 de pachete plătite pe site)</small></span><b>600 lei</b></div>
+            <div class="price"><span>Până la examenul din 2027 · cea mai populară alegere<small>(acces până la 30.11.2027; ofertă de lansare: 300 lei pentru primele 100 de pachete plătite pe site)</small></span><b>600 lei</b></div>
           </div>
         </div>
         <p class="note">Ce cumperi este acces la conținut digital, activat pe contul tău imediat după confirmarea plății (vezi <a href="https://app.brainmed.ro/legal#livrare">Livrare</a> și <a href="https://app.brainmed.ro/legal#retur">Retur și anulare</a>). Plata se face prin NETOPIA Payments.</p>
