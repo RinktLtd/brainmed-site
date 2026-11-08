@@ -341,13 +341,27 @@
     </div>
   </footer>
 <script>
+// Visits counted without cookies (BrainMed's own server, no third parties): where the visitor came from, and taps toward the app.
+const visitSource = (() => {
+  try {
+    const utm = new URLSearchParams(location.search).get('utm_source');
+    if (utm) sessionStorage.setItem('bm-source', utm);
+    return utm || sessionStorage.getItem('bm-source') || document.referrer || '';
+  } catch { return document.referrer || ''; }
+})();
+const count = event => fetch('https://app.brainmed.ro/api/site/visit', { method: 'POST', keepalive: true,
+  headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event, source: visitSource }) }).catch(() => {});
+count('view');
+document.querySelectorAll('a[href^="https://app.brainmed.ro/login"]').forEach(a => a.addEventListener('click', () => count('app')));
+</script>
+<script>
 document.getElementById('waitlist-form').addEventListener('submit', async e => {
   e.preventDefault();
   const msg = document.getElementById('waitlist-msg'), button = e.target.querySelector('button');
   button.disabled = true;
   try {
     const r = await fetch('https://app.brainmed.ro/api/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: e.target.email.value }) });
+      body: JSON.stringify({ email: e.target.email.value, source: visitSource }) });
     if (!r.ok) throw new Error();
     const { position, discount } = await r.json();
     msg.textContent = discount ? `Gata! Ești pe locul ${position}: primești codul de 50% pe email la lansare.` : `Gata! Ești pe locul ${position} în waitlist. Te anunțăm pe email la lansare.`;
