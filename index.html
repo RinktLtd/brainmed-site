@@ -61,7 +61,7 @@
     .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     .hero h1 em { display: block; font-style: normal; color: var(--sun); }
     .pill { display: inline-block; background: rgb(255 255 255 / .18); padding: .3em .9em; border-radius: 999px; font-weight: 600; font-size: .9rem; margin-bottom: 18px; }
-    @media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; padding-top: 48px; } .mascot { max-width: 380px; } }
+    @media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; padding-top: 48px; } .mascot { max-width: 280px; margin: 0 auto; } }
 
     /* Brainy points his stick at the slogan */
     .mascot { width: 100%; max-width: 480px; justify-self: center; }
@@ -115,7 +115,7 @@
 
     .final { text-align: center; background: var(--hero); color: #fff; border-radius: 28px; padding: 56px 24px; }
     .final p { opacity: .9; }
-    .prices { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 420px); gap: 24px; margin-top: 36px; align-items: start; }
+    .prices { display: grid; grid-template-columns: minmax(0, 560px); gap: 24px; margin-top: 36px; align-items: start; }
     @media (max-width: 900px) { .prices { grid-template-columns: 1fr; } }
     .deal { margin-top: 6px; padding: 18px; border-radius: 18px; background: linear-gradient(135deg, #e53935, #ff7043); color: #fff; display: grid; gap: 4px; }
     .deal .off { font: 900 2.6rem/1 var(--display); letter-spacing: -1px; }
@@ -124,11 +124,14 @@
     .deal small { opacity: .95; }
     .waitlist { border: 2px solid #ff7043; }
     .waitlist h3 { font: 900 1.6rem var(--display); }
-    .waitlist .hot { display: inline-block; padding: 6px 14px; border-radius: 999px; background: #e53935; color: #fff; font-weight: 800; margin: 6px 0 10px; }
+    .waitlist .hot { display: inline-block; padding: 6px 14px; border-radius: 12px; background: #e53935; color: #fff; font-weight: 800; margin: 6px 0 10px; }
     .waitlist form { display: grid; gap: 10px; margin-top: 14px; }
     .waitlist input { padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); font: inherit; background: var(--bg, #fff); color: inherit; }
     .waitlist button { padding: 14px 16px; border: 0; border-radius: 12px; background: #e53935; color: #fff; font: 800 1.05rem var(--display); cursor: pointer; }
     .waitlist .msg { margin-top: 10px; font-weight: 700; }
+    .hero .waitlist { grid-column: 1 / -1; width: 100%; max-width: 620px; justify-self: center; color: var(--ink); box-shadow: var(--shadow); }
+    .hero .waitlist p { font-size: 1rem; opacity: 1; }
+    @media (max-width: 820px) { .hero .waitlist { order: 1; } .hero .mascot { order: 2; } }
     .prices ul { margin: 0 0 18px; padding-left: 1.2em; color: var(--muted); }
     .price { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
     .price b { font: 800 1.35rem var(--display); white-space: nowrap; }
@@ -211,6 +214,16 @@
             </g>
           </svg>
         </div>
+        <div class="card waitlist" id="waitlist">
+          <h3>Înscrie-te în waitlist!</h3>
+          <span class="hot">50% REDUCERE pentru primele 100 de conturi</span>
+          <p>🚀 Drumul începe pe <b>11.11.2026, ora 20:00</b>. Primii 100 înscriși primesc pe email codul de reducere.</p>
+          <form id="waitlist-form">
+            <input type="email" name="email" placeholder="adresa ta de email" required autocomplete="email">
+            <button type="submit">Vreau în primii 100</button>
+          </form>
+          <p class="msg" id="waitlist-msg" role="status"></p>
+        </div>
       </div>
     </div>
 
@@ -279,16 +292,6 @@
             <div class="price"><span>30 de zile</span><b>99 lei</b></div>
             <div class="price"><span>Până la examenul din 2027 · cea mai populară alegere<small>acces până la 30.11.2027</small></span><b>600 lei</b></div>
             <div class="deal"><span class="off">-50% reducere</span><span class="now">300 lei <s>600 lei</s></span><small>Ofertă de lansare pentru primele 100 de pachete plătite pe site</small></div>
-          </div>
-          <div class="card waitlist" id="waitlist">
-            <h3>Înscrie-te în waitlist!</h3>
-            <span class="hot">50% REDUCERE pentru primele 100 de conturi</span>
-            <p>🚀 Drumul începe pe <b>11.11.2026, ora 20:00</b>. Primii 100 înscriși primesc pe email codul de reducere.</p>
-            <form id="waitlist-form">
-              <input type="email" name="email" placeholder="adresa ta de email" required autocomplete="email">
-              <button type="submit">Vreau în primii 100</button>
-            </form>
-            <p class="msg" id="waitlist-msg" role="status"></p>
           </div>
         </div>
         <p class="note">Ce cumperi este acces la conținut digital, activat pe contul tău imediat după confirmarea plății (vezi <a href="https://app.brainmed.ro/legal#livrare">Livrare</a> și <a href="https://app.brainmed.ro/legal#retur">Retur și anulare</a>). Plata se face prin NETOPIA Payments.</p>
