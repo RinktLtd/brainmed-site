@@ -215,9 +215,9 @@
           </svg>
         </div>
         <div class="card waitlist" id="waitlist">
-          <h3>Înscrie-te în waitlist!</h3>
+          <h3>Înscrie-te în primele 100 de minți luminate și prinde unul din conturile reduse 50%!</h3>
           <span class="hot">50% REDUCERE pentru primele 100 de conturi</span>
-          <p>🚀 Drumul începe pe <b>11.11.2026, ora 20:00</b>. Primii 100 înscriși primesc pe email codul de reducere.</p>
+          <p>🚀 BrainMed e live! Lasă-ți emailul și primești imediat pe email codul de reducere.</p>
           <form id="waitlist-form">
             <input type="email" name="email" placeholder="adresa ta de email" required autocomplete="email">
             <button type="submit">Vreau în primii 100</button>
@@ -367,8 +367,8 @@ document.getElementById('waitlist-form').addEventListener('submit', async e => {
     const r = await fetch('https://app.brainmed.ro/api/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: e.target.email.value, source: visitSource }) });
     if (!r.ok) throw new Error();
-    const { position, discount } = await r.json();
-    msg.textContent = discount ? `Gata! Ești pe locul ${position}: primești codul de 50% pe email la lansare.` : `Gata! Ești pe locul ${position} în waitlist. Te anunțăm pe email la lansare.`;
+    await r.json();
+    msg.textContent = 'Gata! Ți-am trimis codul de 50% pe email. Dacă nu-l vezi, uită-te și în Spam sau Promoții.';
     e.target.reset();
   } catch {
     msg.textContent = 'Nu am putut salva emailul. Verifică adresa și încearcă din nou.';
