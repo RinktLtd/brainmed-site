@@ -214,15 +214,11 @@
             </g>
           </svg>
         </div>
-        <div class="card waitlist" id="waitlist">
-          <h3>Înscrie-te în primele 100 de minți luminate și prinde unul din conturile reduse 50%!</h3>
-          <span class="hot">50% REDUCERE pentru primele 100 de conturi</span>
-          <p>🚀 BrainMed e live! Lasă-ți emailul și primești imediat pe email codul de reducere.</p>
-          <form id="waitlist-form">
-            <input type="email" name="email" placeholder="adresa ta de email" required autocomplete="email">
-            <button type="submit">Vreau în primii 100</button>
-          </form>
-          <p class="msg" id="waitlist-msg" role="status"></p>
+        <div class="card waitlist" id="oferta">
+          <h3>Preț de lansare: 300 lei în loc de 600!</h3>
+          <span class="hot">-50% până duminică, 15 noiembrie, ora 23:59</span>
+          <p>🚀 BrainMed e live! Pachetul „Până la examenul din 2027” costă 300 lei doar până duminică seara. Fă-ți cont gratuit și alege-l din Premium.</p>
+          <a class="btn btn-primary" href="https://app.brainmed.ro/login" style="display:block;text-align:center;margin-top:14px">Creează cont gratuit</a>
         </div>
       </div>
     </div>
@@ -291,7 +287,7 @@
             </ul>
             <div class="price"><span>30 de zile</span><b>99 lei</b></div>
             <div class="price"><span>Până la examenul din 2027 · cea mai populară alegere<small>acces până la 30.11.2027</small></span><b>600 lei</b></div>
-            <div class="deal"><span class="off">-50% reducere</span><span class="now">300 lei <s>600 lei</s></span><small>Ofertă de lansare pentru primele 100 de pachete plătite pe site</small></div>
+            <div class="deal"><span class="off">-50% reducere</span><span class="now">300 lei <s>600 lei</s></span><small>Ofertă de lansare, până duminică, 15 noiembrie, ora 23:59</small></div>
           </div>
         </div>
         <p class="note">Ce cumperi este acces la conținut digital, activat pe contul tău imediat după confirmarea plății (vezi <a href="https://app.brainmed.ro/legal#livrare">Livrare</a> și <a href="https://app.brainmed.ro/legal#retur">Retur și anulare</a>). Plata se face prin NETOPIA Payments.</p>
@@ -361,23 +357,6 @@ document.querySelectorAll('a[href^="https://app.brainmed.ro/login"]').forEach(a 
   a.addEventListener('click', () => count('app'));
 });
 </script>
-<script>
-document.getElementById('waitlist-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const msg = document.getElementById('waitlist-msg'), button = e.target.querySelector('button');
-  button.disabled = true;
-  try {
-    const r = await fetch('https://app.brainmed.ro/api/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: e.target.email.value, source: visitSource }) });
-    if (!r.ok) throw new Error();
-    await r.json();
-    msg.textContent = 'Gata! Ți-am trimis codul de 50% pe email. Dacă nu-l vezi, uită-te și în Spam sau Promoții.';
-    e.target.reset();
-  } catch {
-    msg.textContent = 'Nu am putut salva emailul. Verifică adresa și încearcă din nou.';
-  }
-  button.disabled = false;
-});
-</script>
+
 </body>
 </html>
