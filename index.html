@@ -356,7 +356,10 @@ const visitSource = (() => {
 const count = event => fetch('https://app.brainmed.ro/api/site/visit', { method: 'POST', keepalive: true,
   headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event, source: visitSource }) }).catch(() => {});
 count('view');
-document.querySelectorAll('a[href^="https://app.brainmed.ro/login"]').forEach(a => a.addEventListener('click', () => count('app')));
+document.querySelectorAll('a[href^="https://app.brainmed.ro/login"]').forEach(a => {
+  if (visitSource) a.href += (a.href.includes('?') ? '&' : '?') + 'src=' + encodeURIComponent(visitSource.slice(0, 200));  // the app keeps it for the new account
+  a.addEventListener('click', () => count('app'));
+});
 </script>
 <script>
 document.getElementById('waitlist-form').addEventListener('submit', async e => {
